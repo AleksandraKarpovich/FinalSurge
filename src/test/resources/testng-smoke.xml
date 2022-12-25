@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Smoke Test">
+    <test name="Login Test">
+        <classes>
+           <class name="org.tms.tests.LoginPageTest"></class>
+        </classes>
+    </test>
+    <test name="Logout Test">
+        <classes>
+            <class name="org.tms.tests.LogoutPageTest"></class>
+        </classes>
+    </test>
+    <test name="Print Report">
+       <classes>
+           <class name="org.tms.tests.PrintWorkoutsTest"></class>
+       </classes>
+    </test>
+    <test name="Add Workout">
+        <classes>
+            <class name="org.tms.tests.AddWorkoutTest"></class>
+        </classes>
+    </test>
+    <test name="Calculator Test">
+        <classes>
+            <class name="org.tms.tests.WorkoutCalculatorsTest"></class>
+        </classes>
+    </test>
+    <test name="Add New Shoe">
+        <classes>
+            <class name="org.tms.tests.AddNewShoeTest"></class>
+        </classes>
+    </test>
+    <test name="Remove Bike">
+        <classes>
+            <class name="org.tms.tests.RemoveBikeTest"></class>
+        </classes>
+    </test>
+    <test name="Update Settings">
+        <classes>
+            <class name="org.tms.tests.UpdateSettingsTest"></class>
+        </classes>
+    </test>
+    <test name="Create Report">
+        <classes>
+            <class name="org.tms.tests.ReportsPageTest"></class>
+        </classes>
+    </test>
+    <test name="Add Daily Vitals">
+        <classes>
+            <class name="org.tms.tests.AddDailyVitalsTest"></class>
+        </classes>
+    </test>
+</suite>
