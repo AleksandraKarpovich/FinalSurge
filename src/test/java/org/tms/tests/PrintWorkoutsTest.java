@@ -1,5 +1,7 @@
 package org.tms.tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -7,6 +9,7 @@ import org.tms.model.User;
 import org.tms.pages.CalendarPage;
 import org.tms.pages.PrintWorkoutsPage;
 import org.tms.services.LoginPageService;
+import org.tms.utils.Retry;
 
 public class PrintWorkoutsTest extends BaseTest{
 
@@ -21,7 +24,8 @@ public class PrintWorkoutsTest extends BaseTest{
         loginPageService.login(user);
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class, enabled = false)
+    @Step("Print Workout")
     public void printWorkoutsTest() {
         calendarPage.clickPrintWorkoutsButton();
         printWorkoutsPage = new PrintWorkoutsPage();

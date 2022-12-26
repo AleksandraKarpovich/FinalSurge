@@ -19,7 +19,7 @@ public class AddNewShoeTest extends BaseTest{
         User user = new User();
         loginPageService.login(user);
     }
-    @Test
+    @Test (enabled = false)
     public void addWorkout() throws Exception{
         calendarPage.openAddNewShoe();
         addNewShoePage = new AddNewShoePage();

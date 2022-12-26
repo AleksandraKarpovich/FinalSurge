@@ -2,6 +2,7 @@ package org.tms.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 import java.util.Set;
 
 public class PrintWorkoutsPage extends BasePage{
@@ -25,6 +26,7 @@ public class PrintWorkoutsPage extends BasePage{
     public void switchToFrame() {
         driver.switchTo().frame(frameId);
     }
+
     public void inputStartingDate(){
         printStartingDate.clear();
         printStartingDate.click();

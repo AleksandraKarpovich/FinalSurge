@@ -20,7 +20,7 @@ public class WorkoutCalculatorsTest extends BaseTest{
         loginPageService.login(user);
     }
 
-    @Test
+    @Test (enabled = false)
     public void createWorkoutReportTest(){
         calendarPage.clickWorkoutsCalculatorButton();
         workoutCalculatorsPage = new WorkoutCalculatorsPage();

@@ -1,5 +1,7 @@
 package org.tms.tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,7 +21,9 @@ public class AddDailyVitalsTest extends BaseTest{
         User user = new User();
         loginPageService.login(user);
     }
-    @Test
+    @Test (enabled = false)
+    @Description("Add New Vitals Test")
+    @Step("Step: Step#1")
     public void addWorkout() {
         calendarPage.openDailyVitalsPage();
         addDailyVitalsPage = new AddDailyVitalsPage();

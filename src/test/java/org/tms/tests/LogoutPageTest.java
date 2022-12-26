@@ -19,7 +19,7 @@ public class LogoutPageTest extends BaseTest {
         User user = new User();
         loginPageService.login(user);
     }
-    @Test
+    @Test (enabled = false)
     public void logoutTest(){
         calendarPage.clickLogoutButton();
         logoutPage = new LogoutPage();
