@@ -19,7 +19,7 @@ public class UpdateSettingsTest extends BaseTest{
         User user = new User();
         loginPageService.login(user);
     }
-    @Test
+    @Test (enabled = false)
     public void updateWeight(){
         calendarPage.clickSettingsButton();
         settingsPage = new SettingsPage();

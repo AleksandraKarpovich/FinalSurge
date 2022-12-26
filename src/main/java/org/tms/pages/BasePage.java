@@ -10,7 +10,7 @@ import org.tms.driver.DriverSingleton;
 import java.time.Duration;
 
 public abstract class BasePage {
-    protected WebDriver driver = DriverSingleton.getDriver();
+    protected WebDriver driver = DriverSingleton.getInstance().getDriver();
     public static final int WAIT_TIMEOUT_SECONDS = 100;
     protected BasePage() {
         PageFactory.initElements(driver, this);

@@ -21,7 +21,7 @@ public class ReportsPageTest extends BaseTest {
         loginPageService.login(user);
     }
 
-    @Test
+    @Test (enabled = false)
     public void createWorkoutReportTest(){
         calendarPage.clickReportPageButton();
         reportsPage = new ReportsPage();
