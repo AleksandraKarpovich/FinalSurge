@@ -1,7 +1,9 @@
 package org.tms.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.tms.utils.TestListener;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,10 +32,9 @@ public class AddWorkoutPage extends BasePage{
     private WebElement addWorkoutButton;
     @FindBy (xpath = "//div[@id='PublicBox']")
     private WebElement workoutDetails;
-
     @FindBy(xpath = "//*[@id='EditProfile']/div/div[1]/div/div[3]")
     private WebElement nameOfAddedWorkout;
-
+    @Step("Step #1: Add Workout")
     public void addWorkout(){
         runActivityType.click();
         waitTimeOfDayIsLoaded();
@@ -51,6 +52,7 @@ public class AddWorkoutPage extends BasePage{
         duration.sendKeys(DURATION);
         howIFelt.click();
         addWorkoutButton.click();
+        TestListener.takeScreenshot();
     }
     public AddWorkoutPage waitTimeOfDayIsLoaded() {
         waitVisibilityOf(timeOfDay);
