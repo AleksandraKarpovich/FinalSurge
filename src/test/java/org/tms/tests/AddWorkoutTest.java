@@ -24,7 +24,7 @@ public class AddWorkoutTest extends BaseTest {
     }
     @Test (enabled = true)
     @Description ("Добавление воркаута")
-    @Step("Step: Step#1")
+    @Step("Метод: с ожидаемым результатом")
     public void addWorkout(){
         calendarPage.openAddWorkoutPage();
         addWorkoutPage = new AddWorkoutPage();

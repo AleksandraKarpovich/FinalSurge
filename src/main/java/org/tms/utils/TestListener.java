@@ -25,6 +25,7 @@ public class TestListener implements ITestListener {
                 "======================================== FINISHED TEST %s Duration: %ss ========================================%n",
                 iTestResult.getName(),
                 getExecutionTime(iTestResult));
+        takeScreenshot();
     }
 
     @Override
@@ -63,7 +64,7 @@ public class TestListener implements ITestListener {
     }
 
     @Attachment(value = "Last screen state", type = "image/png")
-    private byte[] takeScreenshot(){
+    public static byte[] takeScreenshot(){
         return ((TakesScreenshot)DriverSingleton.getInstance().getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }
