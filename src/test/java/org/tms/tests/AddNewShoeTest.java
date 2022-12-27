@@ -1,5 +1,6 @@
 package org.tms.tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,14 +21,20 @@ public class AddNewShoeTest extends BaseTest{
         loginPageService.login(user);
     }
     @Test (enabled = false)
-    public void addWorkout() throws Exception{
+    @Description("Test #3 -> Functionality: To Add New Shoe")
+    public void addNewShoe(){
         calendarPage.openAddNewShoe();
         addNewShoePage = new AddNewShoePage();
-        addNewShoePage.addNewShoe();
+        addNewShoePage.addNameShoe();
+        addNewShoePage.selectBrandShoe();
+        addNewShoePage.addModelShoe();
+        addNewShoePage.addCostShoe();
+        addNewShoePage.addDateShoe();
+        addNewShoePage.addAlertShoe();
+        addNewShoePage.clickAddShoe();
         boolean expectedResult = true;
         addNewShoePage.waitAddedShoeIsLoaded();
         Assert.assertEquals(addNewShoePage.currentShoesIsDisplayed(),expectedResult,
                 "The actual text of the page does not match expected");
-
     }
 }

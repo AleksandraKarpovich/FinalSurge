@@ -1,5 +1,6 @@
 package org.tms.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -46,28 +47,32 @@ public class CalendarPage extends BasePage{
         return nameOfUser.getText();
     }
 
+    @Step("Step #1: Click 'Logout' button")
     public void clickLogoutButton(){
         logoutButton.click();
     }
-
+    @Step("Step #0: Open 'Report' Page")
     public void clickReportPageButton(){
         reportPageButton.click();
     }
-
+    @Step("Step #0: Open 'Create Workouts Report' Page")
     public void clickPrintWorkoutsButton(){
         printWorkoutsButton.click();
     }
 
+    @Step("Step #0: Open 'Add Workout' Page")
     public void openAddWorkoutPage() {
         Actions action = new Actions(driver);
         action.moveToElement(workoutsOption);
         action.perform();
         addWorkoutOption.click();
     }
+    @Step("Step #0: Open 'Workouts Calculator' Page")
     public void clickWorkoutsCalculatorButton(){
         workoutsCalculatorButton.click();
     }
 
+    @Step("Step #0: Open 'View and Add Vitals' Page")
     public void openDailyVitalsPage(){
         Actions action = new Actions(driver);
         action.moveToElement(dailyVitalsOption);
@@ -75,19 +80,21 @@ public class CalendarPage extends BasePage{
         waitOptionIsLoaded();
         addDailyVitalsOption.click();
     }
-
+    @Step("Step #0: Open 'Add New Shoe' Page")
     public void openAddNewShoe() {
         Actions action = new Actions(driver);
         action.moveToElement(gearOption);
         action.perform();
         addNewShoeOption.click();
     }
+    @Step("Step #0: Open 'Add New Bike' Page")
     public void openAddNewBike(){
         Actions action = new Actions(driver);
         action.moveToElement(gearOption);
         action.perform();
         addNewBikeOption.click();
     }
+    @Step("Step #0: Open 'Settings' Page")
     public void clickSettingsButton(){
         settingButton.click();
     }

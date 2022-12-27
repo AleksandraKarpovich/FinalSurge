@@ -1,5 +1,6 @@
 package org.tms.tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,14 +21,19 @@ public class WorkoutCalculatorsTest extends BaseTest{
         loginPageService.login(user);
     }
 
-    @Test (enabled = false)
+    @Test (enabled = true)
+    @Description("Test #10 -> Functionality: Pace Calculation")
     public void createWorkoutReportTest(){
         calendarPage.clickWorkoutsCalculatorButton();
         workoutCalculatorsPage = new WorkoutCalculatorsPage();
         workoutCalculatorsPage.waitFrame();
         workoutCalculatorsPage.switchToFrame();
         workoutCalculatorsPage.openTab();
-        workoutCalculatorsPage.fillFields();
+        workoutCalculatorsPage.fillDistance();
+        workoutCalculatorsPage.fillTime();
+        workoutCalculatorsPage.executionCalculations();
+        workoutCalculatorsPage.waitPaceChart();
+
         boolean expectedResult = true;
         Assert.assertEquals(workoutCalculatorsPage.isDisplayed(),expectedResult,
                 "The actual text of the page does not match expected");

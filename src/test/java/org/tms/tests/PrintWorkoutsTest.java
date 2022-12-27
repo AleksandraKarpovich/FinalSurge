@@ -1,7 +1,6 @@
 package org.tms.tests;
 
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -25,7 +24,7 @@ public class PrintWorkoutsTest extends BaseTest{
     }
 
     @Test(retryAnalyzer = Retry.class, enabled = false)
-    @Step("Print Workout")
+    @Description ("Test #6 -> Functionality: To Create And To Print List Of Workouts")
     public void printWorkoutsTest() {
         calendarPage.clickPrintWorkoutsButton();
         printWorkoutsPage = new PrintWorkoutsPage();

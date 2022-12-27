@@ -1,5 +1,6 @@
 package org.tms.tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,6 +21,7 @@ public class LogoutPageTest extends BaseTest {
         loginPageService.login(user);
     }
     @Test (enabled = false)
+    @Description("Test #5 -> Functionality: Logout from account")
     public void logoutTest(){
         calendarPage.clickLogoutButton();
         logoutPage = new LogoutPage();
