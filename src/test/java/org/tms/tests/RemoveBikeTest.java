@@ -1,5 +1,6 @@
 package org.tms.tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,7 +21,8 @@ public class RemoveBikeTest extends BaseTest {
         loginPageService.login(user);
     }
     @Test (enabled = false)
-    public void addWorkout() throws InterruptedException {
+    @Description("Test #7 -> Functionality: Add and then Remove Bike")
+    public void addWorkout(){
         calendarPage.openAddNewBike();
         removeBikePage = new RemoveBikePage();
         removeBikePage.addNewBike();

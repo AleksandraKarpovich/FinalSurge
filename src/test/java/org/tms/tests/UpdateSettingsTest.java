@@ -1,5 +1,6 @@
 package org.tms.tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,10 +21,13 @@ public class UpdateSettingsTest extends BaseTest{
         loginPageService.login(user);
     }
     @Test (enabled = false)
+    @Description("Test #9 -> Functionality: Update Weight of User on Settings Page")
     public void updateWeight(){
         calendarPage.clickSettingsButton();
         settingsPage = new SettingsPage();
+        settingsPage.editButton();
         settingsPage.updateWeight();
+        settingsPage.clickSaveButton();
         String expectedResult = "Weight: 55.00 kg";
         Assert.assertEquals(settingsPage.weightIsDisplayed(),expectedResult,
                 "The actual text of the page does not match expected");

@@ -1,7 +1,6 @@
 package org.tms.tests;
 
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -22,13 +21,18 @@ public class AddDailyVitalsTest extends BaseTest{
         loginPageService.login(user);
     }
     @Test (enabled = false)
-    @Description("Add New Vitals Test")
-    @Step("Step: Step#1")
-    public void addWorkout() {
+    @Description ("Test #1 -> Functionality: Add New Vitals")
+    public void addDailyVitals() {
         calendarPage.openDailyVitalsPage();
         addDailyVitalsPage = new AddDailyVitalsPage();
+        addDailyVitalsPage.openAddAndViewVitalsPage();
+        addDailyVitalsPage.fillDateField();
+        addDailyVitalsPage.fillStepsField();
+        addDailyVitalsPage.fillCaloriesField();
+        addDailyVitalsPage.fillWeightField();
         addDailyVitalsPage.addVitals();
-        String expectedText = addDailyVitalsPage.currentDate() + " 21500 150 lbs 500 kCal";
+        addDailyVitalsPage.checkRowWithAddedVitals();
+        String expectedText = addDailyVitalsPage.currentDate() + " 21500 165 lbs 252 kCal";
         Assert.assertEquals(addDailyVitalsPage.checkRow(),expectedText,
                 "The actual text of the page does not match expected");
     }

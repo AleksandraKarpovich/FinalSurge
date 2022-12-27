@@ -1,5 +1,6 @@
 package org.tms.tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.tms.model.User;
@@ -8,6 +9,7 @@ import org.tms.services.LoginPageService;
 public class LoginPageTest extends BaseTest{
 
     @Test (enabled = false)
+    @Description("Test #4 -> Functionality: Login to account")
     public void loginTest(){
     LoginPageService loginPageService = new LoginPageService();
     User user = new User();

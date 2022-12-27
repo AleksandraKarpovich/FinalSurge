@@ -1,11 +1,11 @@
 package org.tms.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class AddNewShoePage extends BasePage{
-
     private static final String NAME_SHOE = "New Balance Snickers";
     private static final String BRAND_SHOE = "adidas";
     private static final String MODEL_SHOE = "New Collection: 2022";
@@ -34,27 +34,42 @@ public class AddNewShoePage extends BasePage{
     @FindBy (xpath = "//a[contains(text(),'New Balance Snickers')]")
     private WebElement addedShoe;
 
-    public void addNewShoe() {
+    @Step("Step #1: Add Name Of Shoe")
+    public void addNameShoe(){
         waitNameOfShoeIsLoaded();
         nameShoe.clear();
-        nameShoe.click();
         nameShoe.sendKeys(NAME_SHOE);
+    }
+    @Step("Step #2: Select Brand Of Shoe")
+    public void selectBrandShoe(){
         fieldBrand.click();
         brandShoe.clear();
         brandShoe.sendKeys(BRAND_SHOE);
         brandShoe.sendKeys(Keys.ENTER);
+    }
+    @Step("Step #3: Add Model Of Shoe")
+    public void addModelShoe(){
         modelShoe.clear();
-        modelShoe.click();
         modelShoe.sendKeys(MODEL_SHOE);
+    }
+    @Step("Step #4: Add Cost Of Shoe")
+    public void addCostShoe(){
         costShoe.clear();
-        costShoe.click();
         costShoe.sendKeys(COST_SHOE);
+    }
+    @Step("Step #5: Add Date Purchased Of Shoe")
+    public void addDateShoe(){
         dateShoe.clear();
-        dateShoe.click();
         dateShoe.sendKeys(DATE_SHOE);
+    }
+    @Step("Step #6: Add Distance Alert Of Shoe")
+    public void addAlertShoe(){
         alertShoe.clear();
         alertShoe.click();
         alertShoe.sendKeys(ALERT_SHOE);
+    }
+    @Step("Step #7: Click 'Add Shoe' button")
+    public void clickAddShoe() {
         addShoeButton.click();
     }
     public boolean currentShoesIsDisplayed(){

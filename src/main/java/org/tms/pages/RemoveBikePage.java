@@ -1,5 +1,6 @@
 package org.tms.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +14,7 @@ public class RemoveBikePage extends BasePage{
     private static final String DATE_BIKE = "12/06/2022";
     @FindBy(xpath = "//input[@id='ShoeName']")
     private WebElement nameBike;
-    @FindBy(xpath = "//*[@id=\"s2id_ShoeBrand\"]/a")
+    @FindBy(xpath = "//*[@id='s2id_ShoeBrand']/a")
     private WebElement fieldBrand;
     @FindBy(xpath = "/html/body/div[19]/div/input")
     private WebElement brandBike;
@@ -26,16 +27,16 @@ public class RemoveBikePage extends BasePage{
     @FindBy(xpath = "//*[@id='saveButton']")
     private WebElement addBikeButton;
     @FindBy(xpath = "//a[contains(text(),'My new bike')]")
-   private WebElement addedBike;
-   @FindBy(xpath = "//a[@id='del-bike']")
-   private WebElement removeButton;
-   @FindBy(xpath = "/html/body/div[20]")
-   private WebElement frameId;
-   @FindBy(xpath = "//a[contains(text(),'OK')]")
-   private WebElement ok;
-
+    private WebElement addedBike;
+    @FindBy(xpath = "//a[@id='del-bike']")
+    private WebElement removeButton;
+    @FindBy(xpath = "/html/body/div[20]")
+    private WebElement frameId;
+    @FindBy(xpath = "//a[contains(text(),'OK')]")
+    private WebElement ok;
     @FindBy(xpath = "//p[contains(text(),'You have no Current bikes. Add one now by using the Add New Bike form.')]")
     private WebElement noBikeSection;
+    @Step("Step #1: Add Bike")
     public void addNewBike(){
         nameBike.clear();
         nameBike.click();
@@ -55,6 +56,7 @@ public class RemoveBikePage extends BasePage{
         dateBike.sendKeys(DATE_BIKE);
         addBikeButton.click();
     }
+    @Step("Step #2: Remove Bike")
     public void removeNewBike(){
         addedBike.click();
         removeButton.click();

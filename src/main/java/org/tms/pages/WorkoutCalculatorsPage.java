@@ -1,5 +1,6 @@
 package org.tms.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,29 +28,26 @@ public class WorkoutCalculatorsPage extends BasePage{
     public void switchToFrame() {
         driver.switchTo().frame(frameId);
     }
-    public void fillFields(){
+    @Step("Step #1: Fill 'Distance' field")
+    public void fillDistance(){
         distance.clear();
-        distance.click();
         distance.sendKeys(DISTANCE);
+    }
+    @Step("Step #2: Fill 'Distance' field")
+    public void fillTime(){
         timeOfMinutes.clear();
-        timeOfMinutes.click();
         timeOfMinutes.sendKeys(TIME_OF_MINUTES);
-        timeOfMinutes.sendKeys(Keys.ENTER); //тут по path было два элемента и я применила интер в поле, чтобы отобразить результат
-        waitPaceChart();
-    }
-    public boolean paceChartSectionIsDisplayed(){
-        return paceChartSection.isDisplayed();
-    }
-    public boolean paceSplitsSectionIsDisplayed(){
-        return paceSplitsSection.isDisplayed();
     }
 
+    @Step("Step #3: Execution Calculations")
+    public void executionCalculations(){
+        timeOfMinutes.sendKeys(Keys.ENTER); //тут по path было два элемента и я применила интер в поле, чтобы отобразить результат
+    }
     public boolean isDisplayed(){
         if(paceChartSection.isDisplayed() && paceSplitsSection.isDisplayed()) {
         return true;
         }else return false;
     }
-
     public WorkoutCalculatorsPage waitPaceChart() {
         waitVisibilityOf(paceChartSection);
         return this;

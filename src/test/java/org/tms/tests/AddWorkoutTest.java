@@ -1,7 +1,6 @@
 package org.tms.tests;
 
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -22,14 +21,21 @@ public class AddWorkoutTest extends BaseTest {
         User user = new User();
         loginPageService.login(user);
     }
-    @Test (enabled = true)
-    @Description ("Добавление воркаута")
-    @Step("Метод: с ожидаемым результатом")
+    @Test (enabled = false)
+    @Description ("Test #3 -> Functionality: To Add Run-type Workout")
     public void addWorkout(){
         calendarPage.openAddWorkoutPage();
         addWorkoutPage = new AddWorkoutPage();
+        addWorkoutPage.selectActivityType();
+        addWorkoutPage.addTimeOfDay();
+        addWorkoutPage.addWorkoutName();
+        addWorkoutPage.addDescription();
+        addWorkoutPage.addDistance();
+        addWorkoutPage.addDuration();
+        addWorkoutPage.chooseHowIFelt();
+        addWorkoutPage.addkCal();
         addWorkoutPage.addWorkout();
-        String expectedNameOfWorkout = "Daily Running1";
+        String expectedNameOfWorkout = "Daily Running";
         Assert.assertEquals(addWorkoutPage.nameOfAddedWorkout(),expectedNameOfWorkout,
                 "The actual text of the page does not match expected");
     }
