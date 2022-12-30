@@ -1,6 +1,7 @@
 package org.tms.tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,7 +21,9 @@ public class UpdateSettingsTest extends BaseTest{
         User user = new User();
         loginPageService.login(user);
     }
+
     @Test (enabled = false)
+    @TmsLink("FS-10")
     @Description("Test #9 -> Functionality: Update Weight of User on Settings Page")
     public void updateWeight(){
         calendarPage.clickSettingsButton();

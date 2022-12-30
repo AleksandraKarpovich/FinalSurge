@@ -1,10 +1,12 @@
 package org.tms.pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Log4j2
 public class WorkoutCalculatorsPage extends BasePage{
 
     private static final String DISTANCE = "5";
@@ -30,17 +32,20 @@ public class WorkoutCalculatorsPage extends BasePage{
     }
     @Step("Step #1: Fill 'Distance' field")
     public void fillDistance(){
+        log.info("Fill 'Distance' field");
         distance.clear();
         distance.sendKeys(DISTANCE);
     }
-    @Step("Step #2: Fill 'Distance' field")
+    @Step("Step #2: Fill 'Time of minutes' field")
     public void fillTime(){
+        log.info("Fill 'Time of minutes' field");
         timeOfMinutes.clear();
         timeOfMinutes.sendKeys(TIME_OF_MINUTES);
     }
 
     @Step("Step #3: Execution Calculations")
     public void executionCalculations(){
+        log.info("Execution Calculations");
         timeOfMinutes.sendKeys(Keys.ENTER); //тут по path было два элемента и я применила интер в поле, чтобы отобразить результат
     }
     public boolean isDisplayed(){

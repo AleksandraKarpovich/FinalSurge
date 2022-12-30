@@ -1,12 +1,13 @@
 package org.tms.pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Log4j2
 public class RemoveBikePage extends BasePage{
-
     private static final String NAME_BIKE = "My new bike";
     private static final String BRAND_BIKE = "Felt";
     private static final String MODEL_BIKE = "for Man";
@@ -36,8 +37,10 @@ public class RemoveBikePage extends BasePage{
     private WebElement ok;
     @FindBy(xpath = "//p[contains(text(),'You have no Current bikes. Add one now by using the Add New Bike form.')]")
     private WebElement noBikeSection;
+
     @Step("Step #1: Add Bike")
     public void addNewBike(){
+        log.info("Fill fields and Click 'Add Bike' button");
         nameBike.clear();
         nameBike.click();
         nameBike.sendKeys(NAME_BIKE);
@@ -58,6 +61,7 @@ public class RemoveBikePage extends BasePage{
     }
     @Step("Step #2: Remove Bike")
     public void removeNewBike(){
+        log.info("Remove Bike");
         addedBike.click();
         removeButton.click();
         waitOkIsLoaded();

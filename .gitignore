@@ -1,0 +1,17 @@
+# Default ignored files
+/shelf/
+/.idea/workspace.xml
+
+/target/
+
+# Eclipse STS artifacts
+**/.settings/**
+**/.classpath
+**/.project
+
+# IntelliJ project files
+.idea
+*.iml
+
+# Mac OS files
+.DS_Store

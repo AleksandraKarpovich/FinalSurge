@@ -1,6 +1,7 @@
 package org.tms.tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -23,6 +24,7 @@ public class ReportsPageTest extends BaseTest {
     }
 
     @Test (enabled = false)
+    @TmsLink("FS-9")
     @Description("Test #8 -> Functionality: Login to account")
     public void createWorkoutReportTest(){
         calendarPage.clickReportPageButton();

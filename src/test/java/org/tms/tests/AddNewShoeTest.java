@@ -1,6 +1,7 @@
 package org.tms.tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -21,6 +22,7 @@ public class AddNewShoeTest extends BaseTest{
         loginPageService.login(user);
     }
     @Test (enabled = false)
+    @TmsLink("FS-2")
     @Description("Test #3 -> Functionality: To Add New Shoe")
     public void addNewShoe(){
         calendarPage.openAddNewShoe();

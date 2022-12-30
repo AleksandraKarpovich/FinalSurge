@@ -1,17 +1,15 @@
 package org.tms.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     private String login = "alexandraandreenkova@gmail.com";
     private String password = "Vitya2311";
-
-    public User() {
-    }
-
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
 
     public String getLogin() {
         return login;
