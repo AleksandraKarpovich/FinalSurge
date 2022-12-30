@@ -9,7 +9,7 @@ pipeline {
 
     parameters{
         choice(choices: ['chrome', 'firefox'], name: 'browser')
-        choice(choices: ['src/test/resources/testng-smoke.xml'], name: 'surefire')
+        choice(choices: ['src/test/resources/testng-smoke.xml','src/test/resources/testng-SmokeForRelease.xml'], name: 'checklist')
     }
 
     stages {

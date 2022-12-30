@@ -1,6 +1,7 @@
 package org.tms.tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -22,6 +23,7 @@ public class AddWorkoutTest extends BaseTest {
         loginPageService.login(user);
     }
     @Test (enabled = false)
+    @TmsLink("FS-1")
     @Description ("Test #3 -> Functionality: To Add Run-type Workout")
     public void addWorkout(){
         calendarPage.openAddWorkoutPage();

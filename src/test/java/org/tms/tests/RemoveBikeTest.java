@@ -1,6 +1,7 @@
 package org.tms.tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -21,6 +22,7 @@ public class RemoveBikeTest extends BaseTest {
         loginPageService.login(user);
     }
     @Test (enabled = false)
+    @TmsLink("FS-8")
     @Description("Test #7 -> Functionality: Add and then Remove Bike")
     public void addWorkout(){
         calendarPage.openAddNewBike();

@@ -1,10 +1,11 @@
 package org.tms.pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
+@Log4j2
 public class AddNewShoePage extends BasePage{
     private static final String NAME_SHOE = "New Balance Snickers";
     private static final String BRAND_SHOE = "adidas";
@@ -29,19 +30,19 @@ public class AddNewShoePage extends BasePage{
     private WebElement alertShoe;
     @FindBy (xpath = "//input[@id='saveButton']")
     private WebElement addShoeButton;
-    @FindBy (xpath = "/html/body/div[1]/div[3]/div/div/div/div[2]/div/div[2]/table")
-    private WebElement tableOfShoes;
     @FindBy (xpath = "//a[contains(text(),'New Balance Snickers')]")
     private WebElement addedShoe;
 
     @Step("Step #1: Add Name Of Shoe")
     public void addNameShoe(){
         waitNameOfShoeIsLoaded();
+        log.info("Add Name Of Shoe");
         nameShoe.clear();
         nameShoe.sendKeys(NAME_SHOE);
     }
     @Step("Step #2: Select Brand Of Shoe")
     public void selectBrandShoe(){
+        log.info("Select Brand Of Shoe");
         fieldBrand.click();
         brandShoe.clear();
         brandShoe.sendKeys(BRAND_SHOE);
@@ -49,27 +50,31 @@ public class AddNewShoePage extends BasePage{
     }
     @Step("Step #3: Add Model Of Shoe")
     public void addModelShoe(){
+        log.info("Add Model Of Shoe");
         modelShoe.clear();
         modelShoe.sendKeys(MODEL_SHOE);
     }
     @Step("Step #4: Add Cost Of Shoe")
     public void addCostShoe(){
+        log.info("Add Cost Of Shoe");
         costShoe.clear();
         costShoe.sendKeys(COST_SHOE);
     }
     @Step("Step #5: Add Date Purchased Of Shoe")
     public void addDateShoe(){
+        log.info("Add Date Purchased Of Shoe");
         dateShoe.clear();
         dateShoe.sendKeys(DATE_SHOE);
     }
     @Step("Step #6: Add Distance Alert Of Shoe")
     public void addAlertShoe(){
+        log.info("Add Distance Alert Of Shoe");
         alertShoe.clear();
-        alertShoe.click();
         alertShoe.sendKeys(ALERT_SHOE);
     }
     @Step("Step #7: Click 'Add Shoe' button")
     public void clickAddShoe() {
+        log.info("Click 'Add Shoe' button");
         addShoeButton.click();
     }
     public boolean currentShoesIsDisplayed(){
