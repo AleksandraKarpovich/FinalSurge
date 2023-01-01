@@ -1,6 +1,5 @@
 package org.tms.services;
 
-import io.qameta.allure.Step;
 import org.tms.model.User;
 import org.tms.pages.CalendarPage;
 import org.tms.pages.LoginPage;
