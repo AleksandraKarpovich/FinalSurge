@@ -7,13 +7,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tms.model.User;
 import org.tms.pages.CalendarPage;
-import org.tms.pages.PrintWorkoutsPage;
 import org.tms.services.LoginPageService;
+import org.tms.services.PrintWorkoutsService;
 import org.tms.utils.Retry;
 
 public class PrintWorkoutsTest extends BaseTest{
 
     private CalendarPage calendarPage;
+    private static final String STARTING_DATE = "12/01/2022";
+    private static final String ENDING_DATE = "12/31/2022";
 
     @BeforeClass
     public void loginPage() {
@@ -23,19 +25,14 @@ public class PrintWorkoutsTest extends BaseTest{
         loginPageService.login(user);
     }
 
-    @Test(retryAnalyzer = Retry.class, enabled = false)
+    @Test(retryAnalyzer = Retry.class, enabled = true)
     @TmsLink("FS-7")
     @Description ("Test #6 -> Functionality: To Create And To Print List Of Workouts")
     public void printWorkoutsTest() {
-        calendarPage.clickPrintWorkoutsButton();
-        PrintWorkoutsPage printWorkoutsPage = new PrintWorkoutsPage();
-        printWorkoutsPage.switchToFrame();
-        printWorkoutsPage.inputStartingDate();
-        printWorkoutsPage.inputEndingDate();
-        printWorkoutsPage.clickPrintWorkoutsButton();
-        printWorkoutsPage.switchToTab();
+        PrintWorkoutsService printWorkoutsService = new PrintWorkoutsService();
+        boolean actualResult = printWorkoutsService.printWorkouts(STARTING_DATE,ENDING_DATE).printLinkIsDisplayed();
         boolean expectedResult = true;
-        Assert.assertEquals(printWorkoutsPage.printLinkIsDisplayed(),expectedResult,
+        Assert.assertEquals(actualResult,expectedResult,
                "The actual text of the page does not match expected");
     }
 }

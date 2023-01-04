@@ -7,11 +7,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tms.model.User;
 import org.tms.pages.CalendarPage;
-import org.tms.pages.SettingsPage;
 import org.tms.services.LoginPageService;
+import org.tms.services.SettingsService;
 
 public class UpdateSettingsTest extends BaseTest{
     private CalendarPage calendarPage;
+    private static final String WEIGHT = "55";
 
     @BeforeClass
     public void loginPage() {
@@ -21,17 +22,14 @@ public class UpdateSettingsTest extends BaseTest{
         loginPageService.login(user);
     }
 
-    @Test (enabled = false)
+    @Test (enabled = true)
     @TmsLink("FS-10")
     @Description("Test #9 -> Functionality: Update Weight of User on Settings Page")
     public void updateWeight(){
-        calendarPage.clickSettingsButton();
-        SettingsPage settingsPage = new SettingsPage();
-        settingsPage.editButton();
-        settingsPage.updateWeight();
-        settingsPage.clickSaveButton();
+        SettingsService settingsService = new SettingsService();
+        String actualResult = settingsService.updateWeight(WEIGHT).weightIsDisplayed();
         String expectedResult = "Weight: 55.00 kg";
-        Assert.assertEquals(settingsPage.weightIsDisplayed(),expectedResult,
+        Assert.assertEquals(actualResult,expectedResult,
                 "The actual text of the page does not match expected");
     }
 }

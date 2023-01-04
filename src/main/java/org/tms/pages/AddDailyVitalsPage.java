@@ -5,16 +5,13 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.tms.utils.Waiter;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 @Log4j2
 public class AddDailyVitalsPage extends BasePage{
-    private static final String STEPS = "21500";
-    private static final String CALORIES = "252";
-    private static final String WEIGHT = "165";
-
     public Waiter waiter = new Waiter();
+
     @FindBy(xpath = "//*[@id='breadcrumbs']/div/button")
     private WebElement viewAddVitalsButton;
     @FindBy(xpath = "//input[@id='VitalsDate']")
@@ -52,21 +49,21 @@ public class AddDailyVitalsPage extends BasePage{
         return this;
     }
     @Step ("Step #3: Fill the 'Steps' field")
-    public AddDailyVitalsPage fillStepsField(){
+    public AddDailyVitalsPage fillStepsField(String STEPS){
         log.info("Fill the 'Steps' field");
         stepsField.clear();
         stepsField.sendKeys(STEPS);
         return this;
     }
     @Step ("Step #4: Fill the 'Calories' field")
-    public AddDailyVitalsPage fillCaloriesField(){
+    public AddDailyVitalsPage fillCaloriesField(String CALORIES){
         log.info("Fill the 'Calories' field");
         caloriesField.clear();
         caloriesField.sendKeys(CALORIES);
         return this;
     }
     @Step ("Step #5: Fill the 'Weight' field")
-    public AddDailyVitalsPage fillWeightField(){
+    public AddDailyVitalsPage fillWeightField(String WEIGHT){
         log.info("Fill the 'Weight' field");
         weightField.clear();
         weightField.click();
@@ -93,7 +90,9 @@ public class AddDailyVitalsPage extends BasePage{
         viewButton.click();
         return this;
     }
+    @Step ("Step #8: Received actual result")
     public String checkRow(){
+        log.info("Received actual result");
         return rowNow.getText();
     }
     public String countСurrentDate(){

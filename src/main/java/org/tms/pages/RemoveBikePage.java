@@ -9,12 +9,6 @@ import org.tms.utils.Waiter;
 
 @Log4j2
 public class RemoveBikePage extends BasePage{
-    private static final String NAME_BIKE = "My new bike";
-    private static final String BRAND_BIKE = "Felt";
-    private static final String MODEL_BIKE = "for Man";
-    private static final String COST_BIKE = "1500";
-    private static final String DATE_BIKE = "12/06/2022";
-
     public Waiter waiter = new Waiter();
     @FindBy(xpath = "//input[@id='ShoeName']")
     private WebElement nameBike;
@@ -42,7 +36,8 @@ public class RemoveBikePage extends BasePage{
     private WebElement noBikeSection;
 
     @Step("Step #1: Add Bike")
-    public void addNewBike(){
+    public RemoveBikePage addNewBike(String NAME_BIKE,String BRAND_BIKE,
+                                     String MODEL_BIKE,String COST_BIKE,String DATE_BIKE){
         log.info("Fill fields and Click 'Add Bike' button");
         nameBike.clear();
         nameBike.click();
@@ -61,16 +56,20 @@ public class RemoveBikePage extends BasePage{
         dateBike.click();
         dateBike.sendKeys(DATE_BIKE);
         addBikeButton.click();
+        return this;
     }
     @Step("Step #2: Remove Bike")
-    public void removeNewBike(){
+    public RemoveBikePage removeNewBike(){
         log.info("Remove Bike");
         addedBike.click();
         removeButton.click();
         waiter.waitVisibilityOf(ok);
         ok.click();
+        return this;
     }
+    @Step("Step #3: Received actual result")
     public String noBikeText(){
+        log.info("Received actual result");
         return noBikeSection.getText();
     }
 }

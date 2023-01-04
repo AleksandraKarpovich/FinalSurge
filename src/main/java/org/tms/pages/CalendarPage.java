@@ -37,8 +37,9 @@ public class CalendarPage extends BasePage{
     private WebElement addNewBikeOption;
     @FindBy(xpath = "/html/body/div[1]/header/div/div/div[3]/div/div/div/ul/li[1]/a")
     private WebElement settingButton;
-
+    @Step("Step #4: Received actual result")
     public String getTextOfNameOfUser(){
+        log.info("Received actual result");
         return nameOfUser.getText();
     }
 

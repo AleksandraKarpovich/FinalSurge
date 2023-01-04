@@ -10,9 +10,6 @@ import org.tms.utils.Waiter;
 @Log4j2
 public class WorkoutCalculatorsPage extends BasePage{
 
-    private static final String DISTANCE = "5";
-    private static final String TIME_OF_MINUTES = "30";
-
     public Waiter waiter = new Waiter();
     @FindBy(xpath = "//iframe[@id='OtherCalciFrame']")
     private WebElement frameId;
@@ -27,35 +24,43 @@ public class WorkoutCalculatorsPage extends BasePage{
     @FindBy (xpath = "//h4[contains(text(),'Pace Splits')]")
     private WebElement paceSplitsSection;
 
-    public void openTab(){
+    public WorkoutCalculatorsPage openTab(){
         tabName.click();
+        return this;
     }
-    public void switchToFrame() {
+    public WorkoutCalculatorsPage switchToFrame() {
         waiter.waitVisibilityOf(frameId);
         driver.switchTo().frame(frameId);
+        return this;
     }
     @Step("Step #1: Fill 'Distance' field")
-    public void fillDistance(){
+    public WorkoutCalculatorsPage fillDistance(String DISTANCE){
         log.info("Fill 'Distance' field");
         distance.clear();
         distance.sendKeys(DISTANCE);
+        return this;
     }
     @Step("Step #2: Fill 'Time of minutes' field")
-    public void fillTime(){
+    public WorkoutCalculatorsPage fillTime(String TIME_OF_MINUTES){
         log.info("Fill 'Time of minutes' field");
         timeOfMinutes.clear();
         timeOfMinutes.sendKeys(TIME_OF_MINUTES);
+        return this;
     }
 
     @Step("Step #3: Execution Calculations")
-    public void executionCalculations(){
+    public WorkoutCalculatorsPage executionCalculations(){
         log.info("Execution Calculations");
         timeOfMinutes.sendKeys(Keys.ENTER);
-        waiter.waitVisibilityOf(paceChartSection); //тут по path было два элемента и я применила интер в поле, чтобы отобразить результат
+        waiter.waitVisibilityOf(paceChartSection);
+        return this;
+        //тут по path было два элемента и я применила интер в поле, чтобы отобразить результат
     }
+    @Step("Step #4: Received actual result")
     public boolean isDisplayed(){
+        log.info("Received actual result");
         if(paceChartSection.isDisplayed() && paceSplitsSection.isDisplayed()) {
         return true;
-        }else return false;
+        } else return false;
     }
 }

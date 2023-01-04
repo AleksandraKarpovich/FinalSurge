@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tms.model.User;
 import org.tms.pages.CalendarPage;
-import org.tms.pages.LogoutPage;
 import org.tms.services.LoginPageService;
 import org.tms.services.LogoutPageService;
 
@@ -21,7 +20,7 @@ public class LogoutPageTest extends BaseTest {
         User user = new User();
         loginPageService.login(user);
     }
-    @Test (enabled = false)
+    @Test (enabled = true)
     @TmsLink("FS-6")
     @Description("Test #5 -> Functionality: Logout from account")
     public void logoutTest(){

@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 @Log4j2
 public class SettingsPage extends BasePage{
-
-    private static final String WEIGHT = "55";
     @FindBy (xpath = "//*[@id='ProfileEditLink']/div/span")
     private WebElement editButton;
     @FindBy(xpath = "//*[@id='Weight']")
@@ -19,23 +17,26 @@ public class SettingsPage extends BasePage{
     private WebElement weightRow;
 
     @Step("Step #1: Click 'Edit' button")
-    public void editButton(){
+    public SettingsPage editButton(){
         log.info("Click 'Edit' button");
         editButton.click();
+        return this;
     }
     @Step("Step #2: Update Weight")
-    public void updateWeight(){
+    public SettingsPage updateWeight(String WEIGHT){
         log.info("Update Weight");
         fieldWeight.clear();
         fieldWeight.sendKeys(WEIGHT);
+        return this;
     }
     @Step("Step #3: Click 'Save' button")
     public void clickSaveButton(){
         log.info("Click 'Save' button");
         saveChangesButton.click();
     }
-
+    @Step("Step #4: Received actual result")
     public String weightIsDisplayed(){
+        log.info("Received actual result");
         return weightRow.getText();
     }
 

@@ -9,7 +9,7 @@ import org.tms.services.LoginPageService;
 
 public class LoginPageTest extends BaseTest{
 
-    @Test (enabled = false)
+    @Test (enabled = true)
     @TmsLink("FS-5")
     @Description("Test #4 -> Functionality: Login to account")
     public void loginTest(){

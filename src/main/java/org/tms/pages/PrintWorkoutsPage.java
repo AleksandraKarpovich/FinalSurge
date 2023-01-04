@@ -7,12 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.tms.utils.Switcher;
 import org.tms.utils.Waiter;
 
-import java.util.Set;
 @Log4j2
 public class PrintWorkoutsPage extends BasePage{
-    private static final String STARTING_DATE = "12/01/2022";
-    private static final String ENDING_DATE = "12/31/2022";
     public Waiter waiter = new Waiter();
+
     @FindBy(xpath = "//iframe[@id='PrintWorkoutsiFrame']")
     private WebElement frameId;
     @FindBy(xpath = "//input[@id='PrintStartDate']")
@@ -23,36 +21,44 @@ public class PrintWorkoutsPage extends BasePage{
     private WebElement printWorkoutsButton;
     @FindBy (xpath = "//a[@id='printlink']")
     private WebElement printLink;
-    public void switchToFrame() {
+
+    public PrintWorkoutsPage switchToFrame() {
         driver.switchTo().frame(frameId);
+        return this;
     }
     @Step("Step #1: Input Starting Date")
-    public void inputStartingDate(){
+    public PrintWorkoutsPage inputStartingDate(String STARTING_DATE){
         log.info("Input Starting Date");
         printStartingDate.clear();
         printStartingDate.click();
         printStartingDate.sendKeys(STARTING_DATE);
+        return this;
     }
     @Step("Step #2: Input Ending Date")
-    public void inputEndingDate(){
+    public PrintWorkoutsPage inputEndingDate(String ENDING_DATE){
         log.info("Input Ending Date");
         printEndingDate.clear();
         printEndingDate.click();
         printEndingDate.sendKeys(ENDING_DATE);
+        return this;
     }
     @Step("Step #3: Click 'Print Workouts' button")
-    public void clickPrintWorkoutsButton(){
+    public PrintWorkoutsPage clickPrintWorkoutsButton(){
         log.info("Click 'Print Workouts' button");
         printWorkoutsButton.click();
+        return this;
     }
     @Step("Step #4: Open Workouts Report")
-    public void switchToTab(){
+    public PrintWorkoutsPage switchToTab(){
         log.info("Open Workouts Report");
         Switcher switcher = new Switcher();
         switcher.switcherToTab();
         waiter.waitVisibilityOf(printLink);
+        return this;
     }
+    @Step("Step #5: Received actual result")
     public boolean printLinkIsDisplayed(){
+        log.info("Received actual result");
         return printLink.isDisplayed();
     }
 }

@@ -9,13 +9,6 @@ import org.tms.utils.Waiter;
 
 @Log4j2
 public class AddNewShoePage extends BasePage{
-    private static final String NAME_SHOE = "New Balance Snickers";
-    private static final String BRAND_SHOE = "adidas";
-    private static final String MODEL_SHOE = "New Collection: 2022";
-    private static final String COST_SHOE = "1500";
-    private static final String DATE_SHOE = "06/01/2022";
-    private static final String ALERT_SHOE = "120";
-
     public Waiter waiter = new Waiter();
 
     @FindBy(xpath = "//input[@id='ShoeName']")
@@ -38,7 +31,7 @@ public class AddNewShoePage extends BasePage{
     private WebElement addedShoe;
 
     @Step("Step #1: Add Name Of Shoe")
-    public AddNewShoePage addNameShoe(){
+    public AddNewShoePage addNameShoe(String NAME_SHOE){
         waiter.waitVisibilityOf(nameShoe);
         log.info("Add Name Of Shoe");
         nameShoe.clear();
@@ -46,7 +39,7 @@ public class AddNewShoePage extends BasePage{
         return this;
     }
     @Step("Step #2: Select Brand Of Shoe")
-    public AddNewShoePage selectBrandShoe(){
+    public AddNewShoePage selectBrandShoe(String BRAND_SHOE){
         log.info("Select Brand Of Shoe");
         fieldBrand.click();
         brandShoe.clear();
@@ -55,28 +48,28 @@ public class AddNewShoePage extends BasePage{
         return this;
     }
     @Step("Step #3: Add Model Of Shoe")
-    public AddNewShoePage addModelShoe(){
+    public AddNewShoePage addModelShoe(String MODEL_SHOE){
         log.info("Add Model Of Shoe");
         modelShoe.clear();
         modelShoe.sendKeys(MODEL_SHOE);
         return this;
     }
     @Step("Step #4: Add Cost Of Shoe")
-    public AddNewShoePage addCostShoe(){
+    public AddNewShoePage addCostShoe(String COST_SHOE){
         log.info("Add Cost Of Shoe");
         costShoe.clear();
         costShoe.sendKeys(COST_SHOE);
         return this;
     }
     @Step("Step #5: Add Date Purchased Of Shoe")
-    public AddNewShoePage addDateShoe(){
+    public AddNewShoePage addDateShoe(String DATE_SHOE){
         log.info("Add Date Purchased Of Shoe");
         dateShoe.clear();
         dateShoe.sendKeys(DATE_SHOE);
         return this;
     }
     @Step("Step #6: Add Distance Alert Of Shoe")
-    public AddNewShoePage addAlertShoe(){
+    public AddNewShoePage addAlertShoe(String ALERT_SHOE){
         log.info("Add Distance Alert Of Shoe");
         alertShoe.clear();
         alertShoe.sendKeys(ALERT_SHOE);
@@ -88,7 +81,9 @@ public class AddNewShoePage extends BasePage{
         addShoeButton.click();
         waiter.waitVisibilityOf(addedShoe);
     }
+    @Step("Step #8: Received actual result")
     public boolean currentShoesIsDisplayed(){
+        log.info("Received actual result");
         return addedShoe.isDisplayed();
     }
 

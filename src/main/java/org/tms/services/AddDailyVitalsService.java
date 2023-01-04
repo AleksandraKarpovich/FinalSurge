@@ -1,20 +1,19 @@
 package org.tms.services;
 
-import org.checkerframework.checker.units.qual.A;
 import org.tms.pages.AddDailyVitalsPage;
 import org.tms.pages.CalendarPage;
 
 public class AddDailyVitalsService {
     CalendarPage calendarPage = new CalendarPage();
     AddDailyVitalsPage addDailyVitalsPage = new AddDailyVitalsPage();
-    public AddDailyVitalsPage addDailyVitals(){
+    public AddDailyVitalsPage addDailyVitals(String STEPS, String CALORIES, String WEIGHT){
         calendarPage.openDailyVitalsPage();
         addDailyVitalsPage.openAddAndViewVitalsPage();
         addDailyVitalsPage
                 .fillDateField()
-                .fillStepsField()
-                .fillCaloriesField()
-                .fillWeightField()
+                .fillStepsField(STEPS)
+                .fillCaloriesField(CALORIES)
+                .fillWeightField(WEIGHT)
                 .addVitals()
                 .checkRowWithAddedVitals();
 

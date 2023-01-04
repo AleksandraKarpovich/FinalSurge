@@ -7,11 +7,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tms.model.User;
 import org.tms.pages.CalendarPage;
-import org.tms.pages.WorkoutCalculatorsPage;
 import org.tms.services.LoginPageService;
+import org.tms.services.WorkoutCalculatorsService;
 
 public class WorkoutCalculatorsTest extends BaseTest{
     private CalendarPage calendarPage;
+    private static final String DISTANCE = "5";
+    private static final String TIME_OF_MINUTES = "30";
 
     @BeforeClass
     public void loginPage() {
@@ -21,19 +23,14 @@ public class WorkoutCalculatorsTest extends BaseTest{
         loginPageService.login(user);
     }
 
-    @Test (enabled = false)
+    @Test (enabled = true)
     @TmsLink("FS-11")
     @Description("Test #10 -> Functionality: Pace Calculation")
     public void createWorkoutReportTest(){
-        calendarPage.clickWorkoutsCalculatorButton();
-        WorkoutCalculatorsPage workoutCalculatorsPage = new WorkoutCalculatorsPage();
-        workoutCalculatorsPage.switchToFrame();
-        workoutCalculatorsPage.openTab();
-        workoutCalculatorsPage.fillDistance();
-        workoutCalculatorsPage.fillTime();
-        workoutCalculatorsPage.executionCalculations();
+        WorkoutCalculatorsService workoutCalculatorsService = new WorkoutCalculatorsService();
+        boolean actualResult = workoutCalculatorsService.workoutCalculation(DISTANCE,TIME_OF_MINUTES).isDisplayed();
         boolean expectedResult = true;
-        Assert.assertEquals(workoutCalculatorsPage.isDisplayed(),expectedResult,
+        Assert.assertEquals(actualResult, expectedResult,
                 "The actual text of the page does not match expected");
     }
 }
