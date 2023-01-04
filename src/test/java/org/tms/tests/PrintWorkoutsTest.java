@@ -13,8 +13,7 @@ import org.tms.utils.Retry;
 
 public class PrintWorkoutsTest extends BaseTest{
 
-    public CalendarPage calendarPage;
-    public PrintWorkoutsPage printWorkoutsPage;
+    private CalendarPage calendarPage;
 
     @BeforeClass
     public void loginPage() {
@@ -29,13 +28,12 @@ public class PrintWorkoutsTest extends BaseTest{
     @Description ("Test #6 -> Functionality: To Create And To Print List Of Workouts")
     public void printWorkoutsTest() {
         calendarPage.clickPrintWorkoutsButton();
-        printWorkoutsPage = new PrintWorkoutsPage();
+        PrintWorkoutsPage printWorkoutsPage = new PrintWorkoutsPage();
         printWorkoutsPage.switchToFrame();
         printWorkoutsPage.inputStartingDate();
         printWorkoutsPage.inputEndingDate();
         printWorkoutsPage.clickPrintWorkoutsButton();
         printWorkoutsPage.switchToTab();
-        printWorkoutsPage.waitPrintLinkIsLoaded();
         boolean expectedResult = true;
         Assert.assertEquals(printWorkoutsPage.printLinkIsDisplayed(),expectedResult,
                "The actual text of the page does not match expected");

@@ -5,12 +5,15 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.tms.utils.Waiter;
 
 @Log4j2
 public class WorkoutCalculatorsPage extends BasePage{
 
     private static final String DISTANCE = "5";
     private static final String TIME_OF_MINUTES = "30";
+
+    public Waiter waiter = new Waiter();
     @FindBy(xpath = "//iframe[@id='OtherCalciFrame']")
     private WebElement frameId;
     @FindBy(xpath = "//a[contains(text(),'Pace Calculator')]")
@@ -28,6 +31,7 @@ public class WorkoutCalculatorsPage extends BasePage{
         tabName.click();
     }
     public void switchToFrame() {
+        waiter.waitVisibilityOf(frameId);
         driver.switchTo().frame(frameId);
     }
     @Step("Step #1: Fill 'Distance' field")
@@ -46,20 +50,12 @@ public class WorkoutCalculatorsPage extends BasePage{
     @Step("Step #3: Execution Calculations")
     public void executionCalculations(){
         log.info("Execution Calculations");
-        timeOfMinutes.sendKeys(Keys.ENTER); //тут по path было два элемента и я применила интер в поле, чтобы отобразить результат
+        timeOfMinutes.sendKeys(Keys.ENTER);
+        waiter.waitVisibilityOf(paceChartSection); //тут по path было два элемента и я применила интер в поле, чтобы отобразить результат
     }
     public boolean isDisplayed(){
         if(paceChartSection.isDisplayed() && paceSplitsSection.isDisplayed()) {
         return true;
         }else return false;
     }
-    public WorkoutCalculatorsPage waitPaceChart() {
-        waitVisibilityOf(paceChartSection);
-        return this;
-    }
-    public WorkoutCalculatorsPage waitFrame() {
-        waitVisibilityOf(frameId);
-        return this;
-    }
-
 }

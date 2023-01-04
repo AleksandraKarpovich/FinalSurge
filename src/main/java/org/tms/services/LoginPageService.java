@@ -8,7 +8,7 @@ import org.tms.pages.LoginPage;
 public class LoginPageService {
 
     private static final String PAGE_URL= "https://log.finalsurge.com/login.cshtml";
-    protected LoginPage loginPage = new LoginPage();
+    LoginPage loginPage = new LoginPage();
 
     public CalendarPage login(User user){
         loginPage.openPage(PAGE_URL)

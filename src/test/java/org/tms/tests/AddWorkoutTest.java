@@ -12,8 +12,7 @@ import org.tms.services.LoginPageService;
 
 public class AddWorkoutTest extends BaseTest {
 
-    public CalendarPage calendarPage;
-    public AddWorkoutPage addWorkoutPage;
+    private CalendarPage calendarPage;
 
     @BeforeClass
     public void loginPage() {
@@ -22,12 +21,12 @@ public class AddWorkoutTest extends BaseTest {
         User user = new User();
         loginPageService.login(user);
     }
-    @Test (enabled = false)
+    @Test (enabled = true)
     @TmsLink("FS-1")
     @Description ("Test #3 -> Functionality: To Add Run-type Workout")
     public void addWorkout(){
         calendarPage.openAddWorkoutPage();
-        addWorkoutPage = new AddWorkoutPage();
+        AddWorkoutPage addWorkoutPage = new AddWorkoutPage();
         addWorkoutPage.selectActivityType();
         addWorkoutPage.addTimeOfDay();
         addWorkoutPage.addWorkoutName();

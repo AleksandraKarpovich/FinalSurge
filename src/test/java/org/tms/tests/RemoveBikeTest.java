@@ -11,8 +11,7 @@ import org.tms.pages.RemoveBikePage;
 import org.tms.services.LoginPageService;
 
 public class RemoveBikeTest extends BaseTest {
-    public CalendarPage calendarPage;
-    public RemoveBikePage removeBikePage;
+    private CalendarPage calendarPage;
 
     @BeforeClass
     public void loginPage() {
@@ -26,7 +25,7 @@ public class RemoveBikeTest extends BaseTest {
     @Description("Test #7 -> Functionality: Add and then Remove Bike")
     public void addWorkout(){
         calendarPage.openAddNewBike();
-        removeBikePage = new RemoveBikePage();
+        RemoveBikePage removeBikePage = new RemoveBikePage();
         removeBikePage.addNewBike();
         removeBikePage.removeNewBike();
         String expectedText = "You have no Current bikes. Add one now by using the Add New Bike form.";

@@ -10,7 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 @Log4j2
 public class WebDriverFactory {
 
-    public WebDriverFactory() {
+    private WebDriverFactory() {
     }
 
     public static WebDriver getWebDriver() {

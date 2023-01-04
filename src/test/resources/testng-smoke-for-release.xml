@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Short Smoke Test for Release" parallel="tests" thread-count="1">
+<suite name="Short Smoke Test for Release">
     <test name="Add Workout">
         <classes>
             <class name="org.tms.tests.AddWorkoutTest"></class>

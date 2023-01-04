@@ -4,12 +4,15 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.tms.utils.Switcher;
+import org.tms.utils.Waiter;
+
 import java.util.Set;
 @Log4j2
 public class PrintWorkoutsPage extends BasePage{
-
     private static final String STARTING_DATE = "12/01/2022";
     private static final String ENDING_DATE = "12/31/2022";
+    public Waiter waiter = new Waiter();
     @FindBy(xpath = "//iframe[@id='PrintWorkoutsiFrame']")
     private WebElement frameId;
     @FindBy(xpath = "//input[@id='PrintStartDate']")
@@ -45,15 +48,9 @@ public class PrintWorkoutsPage extends BasePage{
     @Step("Step #4: Open Workouts Report")
     public void switchToTab(){
         log.info("Open Workouts Report");
-        String currentHandle = driver.getWindowHandle();
-        Set<String> allHandles = driver.getWindowHandles();
-        for (String handle : allHandles) {
-            if (!handle.equals(currentHandle)) driver.switchTo().window(handle);
-        }
-    }
-    public PrintWorkoutsPage waitPrintLinkIsLoaded() {
-        waitVisibilityOf(printLink);
-        return this;
+        Switcher switcher = new Switcher();
+        switcher.switcherToTab();
+        waiter.waitVisibilityOf(printLink);
     }
     public boolean printLinkIsDisplayed(){
         return printLink.isDisplayed();

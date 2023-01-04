@@ -6,13 +6,12 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tms.model.User;
-import org.tms.pages.AddNewShoePage;
 import org.tms.pages.CalendarPage;
+import org.tms.services.AddNewShoeService;
 import org.tms.services.LoginPageService;
 
 public class AddNewShoeTest extends BaseTest{
-    public CalendarPage calendarPage;
-    public AddNewShoePage addNewShoePage;
+    private CalendarPage calendarPage;
 
     @BeforeClass
     public void loginPage() {
@@ -25,18 +24,10 @@ public class AddNewShoeTest extends BaseTest{
     @TmsLink("FS-2")
     @Description("Test #3 -> Functionality: To Add New Shoe")
     public void addNewShoe(){
-        calendarPage.openAddNewShoe();
-        addNewShoePage = new AddNewShoePage();
-        addNewShoePage.addNameShoe();
-        addNewShoePage.selectBrandShoe();
-        addNewShoePage.addModelShoe();
-        addNewShoePage.addCostShoe();
-        addNewShoePage.addDateShoe();
-        addNewShoePage.addAlertShoe();
-        addNewShoePage.clickAddShoe();
+        AddNewShoeService addNewShoeService = new AddNewShoeService();
+        boolean actualResult = addNewShoeService.addNewShoe().currentShoesIsDisplayed();
         boolean expectedResult = true;
-        addNewShoePage.waitAddedShoeIsLoaded();
-        Assert.assertEquals(addNewShoePage.currentShoesIsDisplayed(),expectedResult,
+        Assert.assertEquals(actualResult,expectedResult,
                 "The actual text of the page does not match expected");
     }
 }

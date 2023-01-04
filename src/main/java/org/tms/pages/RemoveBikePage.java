@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.tms.utils.Waiter;
 
 @Log4j2
 public class RemoveBikePage extends BasePage{
@@ -13,6 +14,8 @@ public class RemoveBikePage extends BasePage{
     private static final String MODEL_BIKE = "for Man";
     private static final String COST_BIKE = "1500";
     private static final String DATE_BIKE = "12/06/2022";
+
+    public Waiter waiter = new Waiter();
     @FindBy(xpath = "//input[@id='ShoeName']")
     private WebElement nameBike;
     @FindBy(xpath = "//*[@id='s2id_ShoeBrand']/a")
@@ -64,12 +67,8 @@ public class RemoveBikePage extends BasePage{
         log.info("Remove Bike");
         addedBike.click();
         removeButton.click();
-        waitOkIsLoaded();
+        waiter.waitVisibilityOf(ok);
         ok.click();
-    }
-    public RemoveBikePage waitOkIsLoaded() {
-        waitVisibilityOf(ok);
-        return this;
     }
     public String noBikeText(){
         return noBikeSection.getText();

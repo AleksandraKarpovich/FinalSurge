@@ -8,11 +8,11 @@ import org.testng.annotations.Test;
 import org.tms.model.User;
 import org.tms.pages.AddDailyVitalsPage;
 import org.tms.pages.CalendarPage;
+import org.tms.services.AddDailyVitalsService;
 import org.tms.services.LoginPageService;
 
 public class AddDailyVitalsTest extends BaseTest{
-    public CalendarPage calendarPage;
-    public AddDailyVitalsPage addDailyVitalsPage;
+    private CalendarPage calendarPage;
 
     @BeforeClass
     public void loginPage() {
@@ -25,17 +25,10 @@ public class AddDailyVitalsTest extends BaseTest{
     @TmsLink("FS-4")
     @Description ("Test #1 -> Functionality: Add New Vitals")
     public void addDailyVitals() {
-        calendarPage.openDailyVitalsPage();
-        addDailyVitalsPage = new AddDailyVitalsPage();
-        addDailyVitalsPage.openAddAndViewVitalsPage();
-        addDailyVitalsPage.fillDateField();
-        addDailyVitalsPage.fillStepsField();
-        addDailyVitalsPage.fillCaloriesField();
-        addDailyVitalsPage.fillWeightField();
-        addDailyVitalsPage.addVitals();
-        addDailyVitalsPage.checkRowWithAddedVitals();
-        String expectedText = addDailyVitalsPage.currentDate() + " 21500 165 lbs 252 kCal";
-        Assert.assertEquals(addDailyVitalsPage.checkRow(),expectedText,
+        AddDailyVitalsService addDailyVitalsService = new AddDailyVitalsService();
+        String actualText = addDailyVitalsService.addDailyVitals().checkRow();
+        String expectedText = addDailyVitalsService.currentDate() + " 21500 165 lbs 252 kCal";
+        Assert.assertEquals(actualText,expectedText,
                 "The actual text of the page does not match expected");
     }
 }

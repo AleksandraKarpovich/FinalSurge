@@ -12,8 +12,7 @@ import org.tms.services.LoginPageService;
 
 public class ReportsPageTest extends BaseTest {
 
-    public CalendarPage calendarPage;
-    public ReportsPage reportsPage;
+    private CalendarPage calendarPage;
 
     @BeforeClass
     public void loginPage() {
@@ -28,7 +27,7 @@ public class ReportsPageTest extends BaseTest {
     @Description("Test #8 -> Functionality: Login to account")
     public void createWorkoutReportTest(){
         calendarPage.clickReportPageButton();
-        reportsPage = new ReportsPage();
+        ReportsPage reportsPage = new ReportsPage();
         reportsPage.inputStartDate();
         reportsPage.inputEndDate();
         reportsPage.chooseReportView();

@@ -5,8 +5,11 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.tms.utils.Waiter;
+
 @Log4j2
 public class CalendarPage extends BasePage{
+    public Waiter waiter = new Waiter();
 
     @FindBy(xpath = "//strong[contains(., 'Aleksandra')]")
     private WebElement nameOfUser;
@@ -75,7 +78,7 @@ public class CalendarPage extends BasePage{
         Actions action = new Actions(driver);
         action.moveToElement(dailyVitalsOption);
         action.perform();
-        waitOptionIsLoaded();
+        waiter.waitVisibilityOf(addDailyVitalsOption);
         addDailyVitalsOption.click();
     }
     @Step("Step #0: Open 'Add New Shoe' page")
@@ -98,11 +101,6 @@ public class CalendarPage extends BasePage{
     public void clickSettingsButton(){
         log.info("Open 'Settings' page");
         settingButton.click();
-    }
-
-    public CalendarPage waitOptionIsLoaded() {
-        waitVisibilityOf(addDailyVitalsOption);
-        return this;
     }
 }
 

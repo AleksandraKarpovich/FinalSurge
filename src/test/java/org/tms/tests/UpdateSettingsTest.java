@@ -11,8 +11,7 @@ import org.tms.pages.SettingsPage;
 import org.tms.services.LoginPageService;
 
 public class UpdateSettingsTest extends BaseTest{
-    public CalendarPage calendarPage;
-    public SettingsPage settingsPage;
+    private CalendarPage calendarPage;
 
     @BeforeClass
     public void loginPage() {
@@ -27,7 +26,7 @@ public class UpdateSettingsTest extends BaseTest{
     @Description("Test #9 -> Functionality: Update Weight of User on Settings Page")
     public void updateWeight(){
         calendarPage.clickSettingsButton();
-        settingsPage = new SettingsPage();
+        SettingsPage settingsPage = new SettingsPage();
         settingsPage.editButton();
         settingsPage.updateWeight();
         settingsPage.clickSaveButton();

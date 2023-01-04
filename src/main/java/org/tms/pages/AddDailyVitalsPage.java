@@ -4,6 +4,8 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.tms.utils.Waiter;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 @Log4j2
@@ -11,6 +13,8 @@ public class AddDailyVitalsPage extends BasePage{
     private static final String STEPS = "21500";
     private static final String CALORIES = "252";
     private static final String WEIGHT = "165";
+
+    public Waiter waiter = new Waiter();
     @FindBy(xpath = "//*[@id='breadcrumbs']/div/button")
     private WebElement viewAddVitalsButton;
     @FindBy(xpath = "//input[@id='VitalsDate']")
@@ -40,56 +44,62 @@ public class AddDailyVitalsPage extends BasePage{
         viewAddVitalsButton.click();
     }
     @Step ("Step #2: Fill the 'Date' field")
-    public void fillDateField(){
+    public AddDailyVitalsPage fillDateField(){
         log.info("Fill the 'Date' field");
+        waiter.waitVisibilityOf(dateField);
         dateField.clear();
-        dateField.sendKeys(currentDate());
+        dateField.sendKeys(countСurrentDate());
+        return this;
     }
     @Step ("Step #3: Fill the 'Steps' field")
-    public void fillStepsField(){
+    public AddDailyVitalsPage fillStepsField(){
         log.info("Fill the 'Steps' field");
         stepsField.clear();
         stepsField.sendKeys(STEPS);
+        return this;
     }
     @Step ("Step #4: Fill the 'Calories' field")
-    public void fillCaloriesField(){
+    public AddDailyVitalsPage fillCaloriesField(){
         log.info("Fill the 'Calories' field");
         caloriesField.clear();
         caloriesField.sendKeys(CALORIES);
+        return this;
     }
     @Step ("Step #5: Fill the 'Weight' field")
-    public void fillWeightField(){
+    public AddDailyVitalsPage fillWeightField(){
         log.info("Fill the 'Weight' field");
         weightField.clear();
         weightField.click();
         weightField.sendKeys(WEIGHT);
+        return this;
     }
     @Step ("Step #6: Click the 'Add Vitals' button")
-    public void addVitals() {
+    public AddDailyVitalsPage addVitals() {
         log.info("Click the 'Add Vitals' button");
         addVitalsButton.click();
+        return this;
     }
     @Step ("Step #7: Checked added Vitals")
-    public void checkRowWithAddedVitals() {
+    public AddDailyVitalsPage checkRowWithAddedVitals() {
         log.info("Click the 'Custom View' button");
         customView.click();
         log.info("Fill the 'Start Date' field");
         startDate.clear();
-        startDate.sendKeys(currentDate());
+        startDate.sendKeys(countСurrentDate());
         log.info("Fill the 'End Date' field");
         endDate.clear();
-        endDate.sendKeys(currentDate());
+        endDate.sendKeys(countСurrentDate());
         log.info("Click the 'View' button");
         viewButton.click();
+        return this;
     }
     public String checkRow(){
         return rowNow.getText();
     }
-    public String currentDate(){
+    public String countСurrentDate(){
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
         String formatDateTime = now.format(formatter);
-        //System.out.println("After: " + formatDateTime);
         return formatDateTime;
     }
 }

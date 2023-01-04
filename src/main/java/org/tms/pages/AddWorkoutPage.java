@@ -4,6 +4,8 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.tms.utils.Waiter;
+
 @Log4j2
 public class AddWorkoutPage extends BasePage{
 
@@ -13,6 +15,8 @@ public class AddWorkoutPage extends BasePage{
     private static final String DISTANCE = "5";
     private static final String DURATION = "00:45:00";
     private static final String KCAL = "252";
+
+    public Waiter waiter = new Waiter();
 
     @FindBy (xpath = "//*[@id='blog_accordion_left']/div[1]/div[1]/a/i")
     private WebElement runActivityType;
@@ -36,17 +40,18 @@ public class AddWorkoutPage extends BasePage{
     private WebElement addWorkoutButton;
     @FindBy(xpath = "//*[@id='EditProfile']/div/div[1]/div/div[3]")
     private WebElement nameOfAddedWorkout;
+
     @Step("Step #1: Select Activity type")
     public void selectActivityType() {
         log.info("Select Activity Type");
         runActivityType.click();
-        waitRunSubType();
+        waiter.waitVisibilityOf(runSubType);
         runSubType.click();
     }
     @Step("Step #2: Add Time Of Day for Workout")
     public void addTimeOfDay(){
         log.info("Add Time Of Day for Workout");
-        waitTimeOfDayIsLoaded();
+        waiter.waitVisibilityOf(timeOfDay);
         timeOfDay.clear();
         timeOfDay.sendKeys(TIME_OF_DAY);
     }
@@ -89,14 +94,6 @@ public class AddWorkoutPage extends BasePage{
     public void addWorkout(){
         log.info("Click on the 'Add Workout' button");
         addWorkoutButton.click();
-    }
-    public AddWorkoutPage waitTimeOfDayIsLoaded() {
-        waitVisibilityOf(timeOfDay);
-        return this;
-    }
-    public AddWorkoutPage waitRunSubType(){
-        waitVisibilityOf(runSubType);
-        return this;
     }
     public String nameOfAddedWorkout(){
         return nameOfAddedWorkout.getText();

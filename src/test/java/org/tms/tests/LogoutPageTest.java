@@ -9,10 +9,10 @@ import org.tms.model.User;
 import org.tms.pages.CalendarPage;
 import org.tms.pages.LogoutPage;
 import org.tms.services.LoginPageService;
+import org.tms.services.LogoutPageService;
 
 public class LogoutPageTest extends BaseTest {
-    public CalendarPage calendarPage;
-    public LogoutPage logoutPage;
+    private CalendarPage calendarPage;
 
     @BeforeClass
     public void loginPage() {
@@ -25,10 +25,10 @@ public class LogoutPageTest extends BaseTest {
     @TmsLink("FS-6")
     @Description("Test #5 -> Functionality: Logout from account")
     public void logoutTest(){
-        calendarPage.clickLogoutButton();
-        logoutPage = new LogoutPage();
+        LogoutPageService logoutPageService = new LogoutPageService();
+        String actualText = logoutPageService.logout().getTextOfLogout();
         String expectedText = "You have been successfully logged out of the system.";
-        Assert.assertEquals(logoutPage.getTextOfLogout(),expectedText,
+        Assert.assertEquals(actualText,expectedText,
                 "The actual text of the page does not match expected");
     }
 }
