@@ -29,6 +29,7 @@ public class PrintWorkoutsPage extends BasePage{
     @Step("Step #1: Input Starting Date")
     public PrintWorkoutsPage inputStartingDate(String STARTING_DATE){
         log.info("Input Starting Date");
+        waiter.waitVisibilityOf(printStartingDate);
         printStartingDate.clear();
         printStartingDate.click();
         printStartingDate.sendKeys(STARTING_DATE);
